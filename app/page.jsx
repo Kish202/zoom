@@ -26,7 +26,7 @@ function getDummyClasses() {
   const liveStart = new Date(now.getTime() - 5 * 60000);
 
  // Countdown
-  const soonStart = new Date(now.getTime() + 15 * 60000);
+  const soonStart = new Date(now.getTime() + 9 * 60000);
 
   return [
     {

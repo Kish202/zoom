@@ -80,8 +80,7 @@ function JoinButton({ timeInfo, isLoggedIn, onClick, fullWidth = false }) {
     colorClasses = 'bg-orange-600 hover:bg-orange-700 text-white';
     label = 'Join Class';
   } else {
-
-    colorClasses = 'bg-zinc-900  text-zinc-600  cursor-default';
+    colorClasses = 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300';
     label = `Starts in ${timeInfo.diffMins} ${timeInfo.diffMins === 1 ? 'min' : 'mins'}`;
   }
 
@@ -162,7 +161,7 @@ export default function ClassView({ classes, onClose }) {
   }, []);
 
   const timeInfo = getTimeUntilStart(featured.start_datetime);
-  const canJoin = timeInfo.isLive || (timeInfo.diffMins > 0 && timeInfo.diffMins <= 10);
+  const canJoin = timeInfo.isLive || timeInfo.diffMins > 0;
 
   const handleJoinClick = useCallback(() => {
     if (!isLoggedIn) {
@@ -291,15 +290,13 @@ export default function ClassView({ classes, onClose }) {
                   </div>
 
                   {/* Desktop Join Button - bottom right */}
-             { timeInfo.isLive && timeInfo.diffMins < 10 &&      (<div className="absolute bottom-4 right-4 hidden lg:block">
+                  <div className="absolute bottom-4 right-4 hidden lg:block">
                     <JoinButton timeInfo={timeInfo} isLoggedIn={isLoggedIn} onClick={handleJoinClick} />
-                  </div>) }
+                  </div>
 
                   {/* Mobile Join Button - center overlay */}
-                  <div className = {`absolute inset-0 flex items-center justify-center lg:hidden pointer-events-none ${!timeInfo.isLive && timeInfo.diffMins > 10 ? 'opacity-40' :''}`}>
-                    <div 
-                    
-                    className= "pointer-events-auto ">
+                  <div className="absolute inset-0 flex items-center justify-center lg:hidden pointer-events-none">
+                    <div className="pointer-events-auto">
                       <JoinButton timeInfo={timeInfo} isLoggedIn={isLoggedIn} onClick={handleJoinClick} />
                     </div>
                   </div>
