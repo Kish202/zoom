@@ -32,7 +32,15 @@ function formatDuration(minutes) {
 }
 
 function ThumbnailBadges({ timeInfo }) {
-  if (timeInfo.isLive) return null;
+  if (timeInfo.isLive) {
+    return (
+      <div className="absolute top-1 left-1">
+        <div className="px-2 py-0.5 text-xs rounded-md font-medium bg-red-600 text-white">
+          LIVE
+        </div>
+      </div>
+    );
+  }
 
   if (timeInfo.diffMins > 0 && timeInfo.diffMins <= 10) {
     return (
